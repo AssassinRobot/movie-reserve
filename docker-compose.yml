@@ -1,0 +1,38 @@
+version: '3.30'
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    container_name: movie_postgres
+    environment:
+      POSTGRES_DB: 'movie'
+      POSTGRES_PASSWORD: 'password'
+      POSTGRES_USER: 'postgres'
+    ports:
+      - "5432:5432"
+    networks:
+      - movie_network
+    
+  redis:
+    image: redis:latest
+    container_name: movie_redis
+    ports:
+      - "6379:6379"
+    networks:
+      - movie_network
+
+  pgAdmin:
+    image: dpage/pgadmin4
+    container_name: moviePgAdmin
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@domain.com 
+      PGADMIN_DEFAULT_PASSWORD: userPassword 
+
+    networks:
+      - movie_network
+networks:
+  movie_network:
+    driver: bridge 
