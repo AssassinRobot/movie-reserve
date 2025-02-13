@@ -1,2 +1,2 @@
 # movie-reserve
-A movie server app
+A movie reserve app will implement with go and graphql
