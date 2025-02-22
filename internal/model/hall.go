@@ -1,6 +1,10 @@
 package model
 
-import "time"
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
 
 type Hall struct {
 	ID          uint `gorm:"primary_key"`
@@ -10,9 +14,10 @@ type Hall struct {
 	IsFull      bool `gorm:"not null"`
 	CreatedAt   time.Time
 	UpdateAt    time.Time
+	Deleted     gorm.DeletedAt
 }
 
-func NewHall(theaterID,seatID uint, seatsNumber uint, isFull bool) *Hall {
+func NewHall(theaterID, seatID uint, seatsNumber uint, isFull bool) *Hall {
 	return &Hall{
 		TheaterID:   theaterID,
 		SeatsNumber: seatsNumber,
